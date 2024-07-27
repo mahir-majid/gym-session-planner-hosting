@@ -31,14 +31,18 @@ SECRET_KEY = os.getenv("DB_SECRETKEY")
 DEBUG = False
 
 ALLOWED_HOSTS = [os.getenv("DB_LH"), os.getenv("DB_BD"),
-                 os.getenv("DB_RAILWAY")]
+                 os.getenv("DB_RAILWAY"), os.getenv("DB_FIREBASE"),
+                 os.getenv("DB_FIREBASETOO")
+]
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWS_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     os.getenv("DB_CORS_LH"),  # For local development
     os.getenv("DB_CORS_BD"),
-    os.getenv("DB_CORS_RAILWAY")
+    os.getenv("DB_CORS_RAILWAY"),
+    os.getenv("DB_CORS_FIREBASE"),
+    os.getenv("DB_CORS_FIREBASETOO")
 ]
 
 
