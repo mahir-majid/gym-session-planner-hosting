@@ -3,10 +3,10 @@ from django.shortcuts import render
 # Django specific built in model for user authentication
 from django.contrib.auth.models import User
 
-# allows for readable api operations that are "generic" including "List" and "Create"
+# Allows for readable api operations that are "generic" including "List" and "Create"
 from rest_framework import generics
 
-# necessary for converting data into json format; add any file serializers that you are trying to connect into here
+# Necessary for converting data into json format; add any file serializers that you are trying to connect into here
 from .serializers import UserSerializer, WorkoutSectionSerializer, ExerciseSerializer
 from .models import WorkoutSection, Exercise
 
@@ -14,10 +14,10 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 # Create your views here.
 class CreateUserView(generics.CreateAPIView):
-    # queryset is used to get all instances
+    # Queryset is used to get all instances
     queryset = User.objects.all()
 
-    # converts data into json
+    # Converts data into json
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
@@ -33,7 +33,7 @@ class WorkoutSectionDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         
-        # return all workout sections created by this user
+        # Return all workout sections created by this user
         return WorkoutSection.objects.filter(author=user)
     
 class WorkoutSectionView(generics.ListCreateAPIView):
@@ -50,7 +50,6 @@ class WorkoutSectionView(generics.ListCreateAPIView):
         else:
             print(serializer.errors)
 
-# BAKA
 class UpdateWorkoutSectionChosen(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = WorkoutSectionSerializer
@@ -89,7 +88,6 @@ class ExerciseView(generics.ListCreateAPIView):
         workout_section = WorkoutSection.objects.get(id = workout_section_id)
         serializer.save(workout_section=workout_section)
   
-# BAKA
 class ExerciseDeleteView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ExerciseSerializer
@@ -98,8 +96,6 @@ class ExerciseDeleteView(generics.DestroyAPIView):
         exercise_id = self.kwargs.get('pk')
         return Exercise.objects.filter(id=exercise_id)
     
-    
-# BAKA
 class UpdateExerciseComplete(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ExerciseSerializer

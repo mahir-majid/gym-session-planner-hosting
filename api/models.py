@@ -5,7 +5,7 @@ class WorkoutSection(models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     title = models.CharField(max_length = 250)
 
-    # tracks if section was chosen for MyWorkout page
+    # Tracks if section was chosen for MyWorkout page
     chosen = models.BooleanField(default=False)
 
     def __str__(self):
@@ -15,7 +15,7 @@ class Exercise(models.Model):
     workout_section = models.ForeignKey(WorkoutSection, related_name='exercises', on_delete = models.CASCADE)
     content = models.CharField(max_length = 250)
 
-    # tracks if exercise was marked as completed for MyWorkout page
+    # Tracks if exercise was marked as completed for MyWorkout page
     completed = models.BooleanField(default=False)
 
     def __str__(self):

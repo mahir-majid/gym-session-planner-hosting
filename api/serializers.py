@@ -12,13 +12,13 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-# links to id of workout section it belongs to
+# Links to id of workout section it belongs to
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exercise
         fields = ["id", "workout_section", "content", "completed"]
 
-# serializes exercises in each workout-section, links to id of user it belongs to
+# Serializes exercises in each workout-section, links to id of user it belongs to
 class WorkoutSectionSerializer(serializers.ModelSerializer):
     exercises = ExerciseSerializer(many = True, read_only = True)
     class Meta:
